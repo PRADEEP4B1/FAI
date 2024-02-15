@@ -1,0 +1,46 @@
+name: loadBalancer-validator-yamlfile
+on: 
+  workflow_dispatch:
+    inputs:
+      servername:
+        description: "Enter Server name"
+        required: true
+        type: string
+
+jobs:
+  fast1-job1:
+    name: "Remove server"
+    runs-on: self-hosted
+    outputs:
+      last_three_digits: ${{ steps.extract_last_three_digits.outputs.last_three_digits }}
+      middle_characters: ${{ steps.extract_middle_characters.outputs.middle_characters }}
+      server_name: ${{ steps.check_condition.outputs.server_name }}
+    steps:
+      - name: "check condition"
+        id: check_condition
+        if: ${{ github.event.inputs.servername == 'AWSVPSFASTF91' }}
+        run: |
+          server_name="${{ github.event.inputs.servername }}"
+          echo "$server_name is valid"
+          echo "::set-output name=server_name::$server_name"
+          
+      - name: "Extract last three digits"
+        id: extract_last_three_digits
+        run: |
+          last_three_digits="${{ steps.check_condition.outputs.server_name: -3 }}"
+          echo "Last three digits: $last_three_digits"
+          echo "::set-output name=last_three_digits::$last_three_digits"
+          
+      - name: "Extract middle characters"
+        id: extract_middle_characters
+        run: |
+          middle_characters="${{ steps.check_condition.outputs.server_name: 4:3 }}"
+          echo "Middle characters: $middle_characters"
+          echo "::set-output name=middle_characters::$middle_characters"
+           
+      - name: "Validating condition"
+        run: | 
+          echo "**** Printing 2nd time for validation *****"
+          echo "last_3_digits is: ${{ steps.extract_last_three_digits.outputs.last_three_digits }}"
+          echo "middle_3_digits is: ${{ steps.extract_middle_characters.outputs.middle_characters }}"
+          echo "server_name is: ${{ steps.check_condition.outputs.server_name }}"

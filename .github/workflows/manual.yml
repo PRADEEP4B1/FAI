@@ -8,62 +8,26 @@ on:
         type: string
 
 jobs:
-    fast1:
-      name: "Remove server"
-      runs-on:name: loadBalancer
-on: 
-  workflow_dispatch:
-    inputs:
-      servername:
-        description: "Enter Server name"
-        required: true
-        type: string
-
-jobs:
-    fast1:
-      name: "Remove server"
-      runs-on: self-hosted
-      steps:
-        - name: "check condition"
-          if: ${{ github.event.inputs.servername == 'AWSVPSFASTF91' }}
-          env:
-            server_name: ${{ github.event.inputs.servername }}
-
-          run: |
-            echo "$server_name is valid"
-                                  # Extracting the last three digits
-            last_three_digits="${server_name: -3}"
-            echo "Last three digits: $last_three_digits"
-                                   # Extracting middle characters
-             middle_characters="${server_name: 4:3}"
-             echo "Middle characters: $middle_characters"
-
-        - name: "Validating condition"
-          run: | 
-            echo "last_3_digits is: $last_three_digits"
-            echo "middle_3_digits is: $middle_characters"
-            echo "server_name is: "$server_name"
-
-
-      steps:
-        - name: "check condition"
-          if: ${{ github.event.inputs.servername == 'AWSVPSFASTF91' }}
-          env:
-            server_name: ${{ github.event.inputs.servername }}
-
-          run: |
-            echo "$server_name is valid"
-                                  # Extracting the last three digits on
-            last_three_digits="${server_name: -3}"
-            echo "Last three digits: $last_three_digits"
-                                   # Extracting middle characters
-             middle_characters="${server_name: 4:3}"
-             echo "Middle characters: $middle_characters"
-
-        - name: "Validating condition"
-          run: | 
-            echo "**** Printing 2nd time for validation *****"
-            echo "last_3_digits is: ${last_three_digits}"
-            echo "middle_3_digits is: ${middle_characters}"
-            echo "server_name is: ${server_name}"
-
+  fast1:
+    name: "Remove server"
+    runs-on: self-hosted
+    steps:
+      - name: "check condition"
+        if: ${{ github.event.inputs.servername == 'AWSVPSFASTF91' }}
+        env:
+          server_name: ${{ github.event.inputs.servername }}
+        run: |
+          echo "$server_name is valid"
+          # Extracting the last three digits
+          last_three_digits="${server_name: -3}"
+          echo "Last three digits: $last_three_digits"
+          # Extracting middle characters
+          middle_characters="${server_name:4:3}"
+          echo "Middle characters: $middle_characters"
+           
+      - name: "Validating condition"
+        run: | 
+          echo "**** Printing 2nd time for validation *****"
+          echo "last_3_digits is: $last_three_digits"
+          echo "middle_3_digits is: $middle_characters"
+          echo "server_name is: $server_name"

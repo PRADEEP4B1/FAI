@@ -1,4 +1,4 @@
-name: loadBalancer
+name: loadBalancer-test001
 on: 
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   fast1:
-    name: "Remove server"
+    name: "Remove server-test001"
     runs-on: self-hosted
     steps:
       - name: "Check condition and split value"
@@ -21,7 +21,7 @@ jobs:
           cloud_name="${server_name:0:3}"
           server_type="${server_name:3:2}"
           server_name_part="${server_name:5:3}"
-          env_name="${server_name:(-4):4}"
+          env_name="${server_name:8:4}"
           end_file="${server_name:(-3)}"
           
           # Printing variables

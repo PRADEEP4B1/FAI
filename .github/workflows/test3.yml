@@ -33,10 +33,10 @@ jobs:
           
           # Switch statement based on server_type
           case $server_type in
-            vn)
+            VN)
               echo "Switch-case--> Server Type is vn"
               ;;
-            vp)
+            VP)
               echo "Switch-case--> Server Type is vp"
               ;;
             *)

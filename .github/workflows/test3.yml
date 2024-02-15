@@ -1,4 +1,4 @@
-name: loadBalancer001
+name: loadBalancer0011
 on: 
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   fast1:
-    name: "Remove server001"
+    name: "Remove server0011"
     runs-on: self-hosted
     
     env:

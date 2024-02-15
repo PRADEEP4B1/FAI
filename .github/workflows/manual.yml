@@ -29,7 +29,7 @@ jobs:
         - name: "Validating condition"
           run: | 
             echo "**** Printing 2nd time for validation *****"
-            echo "last_3_digits is: $last_three_digits"
-            echo "middle_3_digits is: $middle_characters"
-            echo "server_name is: $server_name"
+            echo "last_3_digits is: ${last_three_digits}"
+            echo "middle_3_digits is: ${middle_characters}"
+            echo "server_name is: ${server_name}"
 

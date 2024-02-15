@@ -34,12 +34,12 @@ jobs:
           # Switch statement based on server_type
           case $server_type in
             vn)
-              echo "Server Type is vn"
+              echo "Switch-case--> Server Type is vn"
               ;;
             vp)
-              echo "Server Type is vp"
+              echo "Switch-case--> Server Type is vp"
               ;;
             *)
-              echo "Unknown server type"
+              echo "Unknown server type in Switch-case"
               ;;
           esac

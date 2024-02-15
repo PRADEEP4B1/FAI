@@ -1,4 +1,4 @@
-name: loadBalancer
+name: loadBalancer-yamlfile
 on: 
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   fast1:
-    name: "Remove server"
+    name: "Input-Server Type validation"
     runs-on: self-hosted
     steps:
       - name: "check condition"

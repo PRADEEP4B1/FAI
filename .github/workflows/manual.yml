@@ -13,7 +13,7 @@ jobs:
       runs-on: self-hosted
       steps:
         - name: "check condition"
-          if: ${{ github.event.inputs.servername == AWSvpsFASTF91 }}
+          if: ${{ github.event.inputs.servername == 'AWSvpsFASTF91' }}
           env:
           server_name: ${{ github.event.inputs.servername }}
 

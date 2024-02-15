@@ -10,7 +10,7 @@ on:
 jobs:
     fast1:
       name: "Remove server"
-      runs-on: self-hosted
+      runs-on: ubuntu-linux
       steps:
         - name: "check condition"
           if: ${{ github.event.inputs.servername == 'AWSVPSFASTF91' }}
@@ -31,4 +31,4 @@ jobs:
             echo "last_3_digits is: $last_three_digits"
             echo "middle_3_digits is: $middle_characters"
             echo "server_name is: "$server_name"
-            
+

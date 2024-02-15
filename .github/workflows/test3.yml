@@ -1,4 +1,4 @@
-name: loadBalancer0001
+name: Test-yaml001
 on: 
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   fast1:
-    name: "Remove server-job1"
+    name: "job001"
     runs-on: ubuntu-latest
     steps:
       - name: "Check condition and split value"

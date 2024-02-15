@@ -1,4 +1,4 @@
-name: Test-yaml001
+name: loadBalancer
 on: 
   workflow_dispatch:
     inputs:
@@ -9,11 +9,11 @@ on:
 
 jobs:
   fast1:
-    name: "job001"
-    runs-on: ubuntu-latest
+    name: "Remove server"
+    runs-on: self-hosted
     steps:
       - name: "Check condition and split value"
-        if: ${{ github.event.inputs.servername == "AWSVPIISFASTF91" }}
+        if: ${{ github.event.inputs.servername == 'AWSVPIISFASTF91' }}
         env:
           server_name: ${{ github.event.inputs.servername }}
         run: |

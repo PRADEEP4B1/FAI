@@ -19,7 +19,7 @@ jobs:
 
           run: |
             echo "$server_name is valid"
-                                  # Extracting the last three digits
+                                  # Extracting the last three digits on
             last_three_digits="${server_name: -3}"
             echo "Last three digits: $last_three_digits"
                                    # Extracting middle characters

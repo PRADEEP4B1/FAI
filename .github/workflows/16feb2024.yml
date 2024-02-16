@@ -18,7 +18,7 @@ jobs:
       aws_account_id: ${{ steps.extract.outputs.aws_account_id }}
     steps:
       - name: "Check condition and split value"
-        if: ${{ github.event.inputs.servername == 'AWSVPIISFASTF91' }}
+        if: ${{ github.event.inputs.servername == 'AWSVNIISFASTF91' }}
         id: extract
         env:
           server_name: ${{ github.event.inputs.servername }}

@@ -11,7 +11,7 @@ on:
 jobs:
   fast1:
     name: "Remove server-test1602"
-    runs-on: self-hosted
+    runs-on: ubuntu-linux
     outputs:
       target_group: ${{ steps.extract.outputs.target_group }}
       azure_id: ${{ steps.extract.outputs.azure_id }}

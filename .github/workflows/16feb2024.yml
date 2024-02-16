@@ -1,4 +1,4 @@
-name: loadBalancer-test001
+name: loadBalancer-test1602
 
 on: 
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   fast1:
-    name: "Remove server-test001"
+    name: "Remove server-test1602"
     runs-on: self-hosted
     outputs:
       target_group: ${{ steps.extract.outputs.target_group }}
@@ -62,7 +62,7 @@ jobs:
           echo "::set-output name=aws_account_id::$aws_account_id"
 
   job2:
-    name: "Print Variables in Job2"
+    name: "Print Variables in Job2 1602"
     runs-on: self-hosted
     needs: fast1
     steps:

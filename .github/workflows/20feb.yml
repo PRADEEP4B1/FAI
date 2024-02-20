@@ -1,0 +1,74 @@
+name: loadBalancer-test20feb
+
+on: 
+  workflow_dispatch:
+    inputs:
+      servername:
+        description: "Enter Server name"
+        required: true
+        type: string
+
+jobs:
+  fast1:
+    name: "Remove server-test20feb"
+    runs-on: self-hosted
+    outputs:
+      target_group: ${{ steps.extract.outputs.target_group }}
+      azure_id: ${{ steps.extract.outputs.azure_id }}
+      aws_account_id: ${{ steps.extract.outputs.aws_account_id }}
+    steps:
+      - name: "Check condition and split value"
+        if: ${{ github.event.inputs.servername == 'AWSVPIISFASTF91' }}
+        id: extract
+        env:
+          server_name: ${{ github.event.inputs.servername }}
+        run: |
+          # Extracting variables
+          cloud_name="${server_name:0:3}"
+          server_type="${server_name:3:2}"
+          server_name_part="${server_name:5:3}"
+          env_name="${server_name:8:4}"
+          end_file="${server_name:(-3)}"
+          
+          # Printing variables
+          echo "Cloud Name: $cloud_name"
+          echo "Server Type: $server_type"
+          echo "Server Name: $server_name_part"
+          echo "Environment Name: $env_name"
+          echo "End File: $end_file"
+          
+          # Assigning variables based on server_type
+          case $server_type in
+            VN)
+              echo "Switch-case--> Server Type is vn"
+              # Set variables for VN type
+              target_group="your_target_group_value"
+              azure_id="your_azure_id_value"
+              aws_account_id="your_aws_account_id_value"
+              ;;
+            VP)
+              echo "Switch-case--> Server Type is vp"
+              # Set variables for VP type
+              target_group="your_target_group_value"
+              azure_id="your_azure_id_value"
+              aws_account_id="your_aws_account_id_value"
+              ;;
+            *)
+              echo "Unknown server type in Switch-case"
+              ;;
+          esac
+          echo "::set-output name=target_group::$target_group"
+          echo "::set-output name=azure_id::$azure_id"
+          echo "::set-output name=aws_account_id::$aws_account_id"
+
+  job2:
+    name: "Call Template and Print Variables"
+    runs-on: self-hosted
+    needs: fast1
+    steps:
+      - name: "Call Template and Print Variables"
+        uses: ./.github/workflows/template.yaml
+        with:
+          target_group: ${{ needs.fast1.outputs.target_group }}
+          azure_id: ${{ needs.fast1.outputs.azure_id }}
+          aws_account_id: ${{ needs.fast1.outputs.aws_account_id }}

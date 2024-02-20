@@ -1,4 +1,3 @@
-# Content of template.yaml
 name: Template20feb
 on:
   workflow_call:

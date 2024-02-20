@@ -16,6 +16,9 @@ jobs:
   print_variables:
     runs-on: self-hosted
     steps:
+      - name: "action checkout"
+        uses: actions/checkout@v4
+        
       - name: Print Variables
         run: |
           echo "Target Group: ${{ inputs.target_group }}"

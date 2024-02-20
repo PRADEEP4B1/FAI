@@ -10,13 +10,16 @@ on:
 
 jobs:
   fast1:
-    name: "Remove server-test20feb"
+    name: "Remove server-test001"
     runs-on: self-hosted
     outputs:
       target_group: ${{ steps.extract.outputs.target_group }}
       azure_id: ${{ steps.extract.outputs.azure_id }}
       aws_account_id: ${{ steps.extract.outputs.aws_account_id }}
     steps:
+      - name: "action checkout"
+        uses: actions/checkout@v4
+
       - name: "Check condition and split value"
         if: ${{ github.event.inputs.servername == 'AWSVPIISFASTF91' }}
         id: extract
@@ -66,9 +69,15 @@ jobs:
     runs-on: self-hosted
     needs: fast1
     steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: "Call Template and Print Variables"
         uses: ./.github/workflows/template.yaml
         with:
           target_group: ${{ needs.fast1.outputs.target_group }}
           azure_id: ${{ needs.fast1.outputs.azure_id }}
           aws_account_id: ${{ needs.fast1.outputs.aws_account_id }}
+
+          

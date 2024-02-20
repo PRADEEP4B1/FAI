@@ -17,9 +17,7 @@ jobs:
       azure_id: ${{ steps.extract.outputs.azure_id }}
       aws_account_id: ${{ steps.extract.outputs.aws_account_id }}
     steps:
-      - name: "action checkout"
-        uses: actions/checkout@v2
-
+      
       - name: "Check condition and split value"
         if: ${{ github.event.inputs.servername == 'AWSVPIISFASTF91' }}
         id: extract
@@ -75,7 +73,7 @@ jobs:
       
 
       - name: "Call Template and Print Variables"
-        uses: ./.github/workflows/template.yaml@master
+        uses: .github/workflows/template.yaml@master
         with:
           target_group: ${{ needs.fast1.outputs.target_group }}
           azure_id: ${{ needs.fast1.outputs.azure_id }}

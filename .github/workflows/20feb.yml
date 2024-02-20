@@ -73,7 +73,7 @@ jobs:
       
 
       - name: "Call Template and Print Variables"
-        uses: ./.github/workflows/template.yaml
+        uses: ./.github/workflows/template.yaml@master
         with:
           target_group: ${{ needs.fast1.outputs.target_group }}
           azure_id: ${{ needs.fast1.outputs.azure_id }}

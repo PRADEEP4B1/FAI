@@ -69,11 +69,13 @@ jobs:
     runs-on: self-hosted
     needs: fast1
     steps:
+      - name: "action checkout"
+        uses: actions/checkout@v4
 
       
 
       - name: "Call Template and Print Variables"
-        uses: ./.github/workflows/template.yaml@master
+        uses: .github/workflows/template.yaml@master
         with:
           target_group: ${{ needs.fast1.outputs.target_group }}
           azure_id: ${{ needs.fast1.outputs.azure_id }}

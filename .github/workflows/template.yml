@@ -1,0 +1,29 @@
+name: Template Workflow-20feb
+
+on:
+  workflow_call:
+    inputs:
+      target_group:
+        description: "Target group value"
+        required: true
+        type: string
+      azure_id:
+        description: "Azure ID value"
+        required: true
+        type: string
+      aws_account_id:
+        description: "AWS Account ID value"
+        required: true
+        type: string
+
+jobs:
+  print_variables:
+    name: "Print Variables from Main Workflow"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Target Group
+        run: echo "Target Group: ${{ workflow.inputs.target_group }}"
+      - name: Print Azure ID
+        run: echo "Azure ID: ${{ workflow.inputs.azure_id }}"
+      - name: Print AWS Account ID
+        run: echo "AWS Account ID: ${{ workflow.inputs.aws_account_id }}"

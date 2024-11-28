@@ -1,0 +1,13 @@
+name: Caller Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-reusable-workflow:
+    uses: PRADEEP4B1/FAI_temp/.github/workflows/reusable-template.yml@main
+    with:
+      param1: 'value1'
+      param2: 'value2'
+    secrets:
+      MY_SECRET: ${{ secrets.MY_SECRET }}
